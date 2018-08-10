@@ -5,6 +5,9 @@ My draft paper is uploaded on https://arxiv.org/abs/1808.01560.
 I'm open for any comments on my work. Please email me at imhgchoi@korea.ac.kr .
 I'd really appreciate feedbacks :)
 
+## Paper Abstract
+Predicting the price correlation of two assets for future time periods is important in portfolio optimization. We apply LSTM recurrent neural networks (RNN) in predicting the stock price correlation coefficient of two individual stocks. RNNs are competent in understanding temporal dependencies. The use of LSTM cells further enhances its long term predictive properties. To encompass both linearity and nonlinearity in the model, we adopt the ARIMA model as well. The ARIMA model filters linear tendencies in the data and passes on the residual value to the LSTM model. The ARIMA LSTM hybrid model is tested against other traditional predictive financial models such as the full historical model, constant correlation model, single index model and the multi group model. In our empirical study, the predictive ability of the ARIMA-LSTM model turned out superior to all other financial models by a significant scale. Our work implies that it is worth considering the ARIMA LSTM model to forecast correlation coefficient for portfolio optimization.
+
 
 ## Github code reading guideline
 
