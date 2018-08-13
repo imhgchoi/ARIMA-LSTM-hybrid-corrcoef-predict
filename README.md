@@ -57,3 +57,17 @@ My source codes and files can be segmented into three parts.
 (3) pyramid-arima : ARIMA modeling section
 
 (4) Keras : LSTM modeling section
+
+## How to Use the Model
+
+(1) Download two assets' most recent 2000-day-long price data that you wish to predict their correlation coefficient.
+
+(2) With a 100-day-window, calculate their correlation coefficient, with a 100 day stride. That will generate 20 time steps.
+
+(3) With the 20 time step, fit the most appropriate ARIMA model and calculate its residuals. Ideally, you could use the 'auto-arima' function in 'pyramid-arima' module. (NOTE: You should also forecast the 21st time step for later use!)
+
+(4) Now you have your 20 time step data for the LSTM model ready. Download the 'epoch28' from the 'models/hybrid_LSTM' folder.
+
+(5) Pass the residual data through the epoch28 model and get your result.
+
+(6) Add the output result to the 21st ARIMA forecast value to get your final result! (NOTE: Rarely, the value might be out of bound; that is, smaller than -1 or bigger than 1. If that's the case, apply MIN(prediction, 1) or MAX(prediction, -1) )
