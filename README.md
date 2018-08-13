@@ -60,7 +60,7 @@ My source codes and files can be segmented into three parts.
 
 ## How to Use the Model
 
-(1) Download two assets' most recent 2000-day-long price data that you wish to predict their correlation coefficient.
+(1) Download two assets' most recent 2000-day-long price data that you wish the correlation coefficient to be predicted.
 
 (2) With a 100-day-window, calculate their correlation coefficient, with a 100 day stride. That will generate 20 time steps.
 
