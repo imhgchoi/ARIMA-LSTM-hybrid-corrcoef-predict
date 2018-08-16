@@ -2,9 +2,12 @@ import pandas as pd
 import numpy as np
 import os
 from keras.models import Sequential, load_model
-from keras.layers import Dense, LSTM
+from keras.layers import Dense, LSTM, Activation
+from keras import backend as K
+from keras.utils.generic_utils import get_custom_objects
 from keras.callbacks import ModelCheckpoint
 from keras.regularizers import l1_l2
+
 
 # Train - Dev - Test Generation
 train_X= pd.read_csv('C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/train_dev_test/after_arima/train_X.csv')
@@ -46,11 +49,23 @@ _dev_Y = np.asarray(dev_Y).reshape(int(1117500/STEP), 1)
 _test1_Y = np.asarray(test1_Y).reshape(int(1117500/STEP), 1)
 _test2_Y = np.asarray(test2_Y).reshape(int(1117500/STEP), 1)
 
+#define custom activation
+class Double_Tanh(Activation):
+    def __init__(self, activation, **kwargs):
+        super(Double_Tanh, self).__init__(activation, **kwargs)
+        self.__name__ = 'double_tanh'
+
+def double_tanh(x):
+    return (K.tanh(x) * 2)
+
+get_custom_objects().update({'double_tanh':Double_Tanh(double_tanh)})
+
 # Model Generation
 model = Sequential()
 #check https://machinelearningmastery.com/use-weight-regularization-lstm-networks-time-series-forecasting/
-model.add(LSTM(10, input_shape=(20,1), dropout=0.1, kernel_regularizer=l1_l2(0,0.005), bias_regularizer=l1_l2(0,0.005)))
-model.add(Dense(1, activation='tanh'))
+model.add(LSTM(10, input_shape=(20,1), dropout=0.1, kernel_regularizer=l1_l2(0,0.01), bias_regularizer=l1_l2(0,0.01)))
+model.add(Dense(1))
+model.add(Activation(double_tanh))
 model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mse', 'mae'])
 #, kernel_regularizer=l1_l2(0,0.1), bias_regularizer=l1_l2(0,0.1),
 
