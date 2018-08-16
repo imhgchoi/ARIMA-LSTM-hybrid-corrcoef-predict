@@ -2,7 +2,7 @@
 We applied an ARIMA-LSTM hybrid model to predict future price correlation coefficients of two assets
 
 My draft paper is uploaded on https://arxiv.org/abs/1808.01560.
-I'm open for any comments on my work. Please email me at imhgchoi@korea.ac.kr .
+I'm open for any comments on my work. Please email me at imhgchoi@korea.ac.kr.
 I'd really appreciate feedbacks :)
 
 ## Paper Abstract
@@ -66,7 +66,7 @@ My source codes and files can be segmented into three parts.
 
 (3) With the 20 time step, fit the most appropriate ARIMA model and calculate its residuals. Ideally, you could use the 'auto-arima' function in 'pyramid-arima' module. (NOTE: You should also forecast the 21st time step for later use!)
 
-(4) Now you have your 20 time step data for the LSTM model ready. Download the 'epoch28' from the 'models/hybrid_LSTM' folder.
+(4) Now you have your 20 time step data for the LSTM model ready. Download the 'epoch26' from the 'models/hybrid_LSTM' folder.
 
 (5) Pass the residual data through the epoch28 model and get your result.
 
