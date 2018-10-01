@@ -68,6 +68,6 @@ My source codes and files can be segmented into three parts.
 
 (4) Now you have your 20 time step data for the LSTM model ready. Download the 'epoch247' from the 'models/hybrid_LSTM' folder.
 
-(5) Pass the residual data through the epoch28 model and get your result.
+(5) Pass the residual data through the epoch247 model and get your result.
 
 (6) Add the output result to the 21st ARIMA forecast value to get your final result! (NOTE: Rarely, the value might be out of bound; that is, smaller than -1 or bigger than 1. If that's the case, apply MIN(prediction, 1) or MAX(prediction, -1) )
