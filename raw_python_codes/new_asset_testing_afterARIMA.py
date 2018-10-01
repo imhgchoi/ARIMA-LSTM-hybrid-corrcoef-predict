@@ -30,6 +30,6 @@ get_custom_objects().update({'double_tanh':Double_Tanh(double_tanh)})
 
 
 
-model = load_model('C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/hybrid_LSTM/epoch28.h5')
+model = load_model('C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/hybrid_LSTM/epoch247.h5')
 score = model.evaluate(X,Y)
-print('score : mse - ' + str(score[1]) + ' / mae - ' + str(score[2]))
+print('score : mse - ' + str(np.round(score[1],4)) + ' / mae - ' + str(np.round(score[2], 4)))

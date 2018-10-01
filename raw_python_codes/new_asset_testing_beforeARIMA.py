@@ -18,8 +18,7 @@ print(new_assets)
 
 def rolling_corr(item1, item2):
     # import data
-    stock_price_df = pd.read_csv(
-        "C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/stock08_price.csv")
+    stock_price_df = pd.read_csv("C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/stock08_price.csv")
     pd.to_datetime(stock_price_df['Date'], format='%Y-%m-%d')
     stock_price_df = stock_price_df.set_index(pd.DatetimeIndex(stock_price_df['Date']))
 

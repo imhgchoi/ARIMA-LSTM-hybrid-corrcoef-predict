@@ -63,7 +63,7 @@ get_custom_objects().update({'double_tanh':Double_Tanh(double_tanh)})
 # Model Generation
 model = Sequential()
 #check https://machinelearningmastery.com/use-weight-regularization-lstm-networks-time-series-forecasting/
-model.add(LSTM(10, input_shape=(20,1), dropout=0.1, kernel_regularizer=l1_l2(0,0.01), bias_regularizer=l1_l2(0,0.01)))
+model.add(LSTM(25, input_shape=(20,1), dropout=0.0, kernel_regularizer=l1_l2(0.00,0.00), bias_regularizer=l1_l2(0.00,0.00)))
 model.add(Dense(1))
 model.add(Activation(double_tanh))
 model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mse', 'mae'])
@@ -72,20 +72,25 @@ model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mse', 'mae'
 print(model.metrics_names)
 # Fitting the Model
 model_scores = {}
+Reg = False
+d = 'hybrid_LSTM'
+
+if Reg :
+    d += '_with_reg'
 
 epoch_num=1
-for _ in range(50):
+for _ in range(124):
 
     # train the model
-    dir = 'C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/hybrid_LSTM'
+    dir = 'C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/'+d
     file_list = os.listdir(dir)
     if len(file_list) != 0 :
         epoch_num = len(file_list) + 1
         recent_model_name = 'epoch'+str(epoch_num-1)+'.h5'
-        filepath = 'C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/hybrid_LSTM/'+recent_model_name
+        filepath = 'C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/' + d + '/' + recent_model_name
         model = load_model(filepath)
 
-    filepath = 'C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/hybrid_LSTM/epoch'+str(epoch_num)+'.h5'
+    filepath = 'C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/' + d + '/epoch'+str(epoch_num)+'.h5'
 
     checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=False, mode='min')
     callbacks_list = [checkpoint]
@@ -106,7 +111,7 @@ for _ in range(50):
     print('test2 set score : mse - ' + str(score_test2[1]) +' / mae - ' + str(score_test2[2]))
 #.history['mean_squared_error'][0]
     # get former score data
-    df = pd.read_csv("C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/hybrid_LSTM.csv")
+    df = pd.read_csv("C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/"+d+".csv")
     train_mse = list(df['TRAIN_MSE'])
     dev_mse = list(df['DEV_MSE'])
     test1_mse = list(df['TEST1_MSE'])
@@ -141,5 +146,5 @@ for _ in range(50):
 
     # save newly created score dataset
     model_scores_df = pd.DataFrame(model_scores)
-    model_scores_df.to_csv("C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/hybrid_LSTM.csv")
+    model_scores_df.to_csv("C:/Users/Froilan/Desktop/myFiles/JupyterFiles/stock_correlation_prediction/models/"+d+".csv")
 
