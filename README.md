@@ -66,7 +66,7 @@ My source codes and files can be segmented into three parts.
 
 (3) With the 20 time step, fit the most appropriate ARIMA model and calculate its residuals. Ideally, you could use the 'auto-arima' function in 'pyramid-arima' module. (NOTE: You should also forecast the 21st time step for later use!)
 
-(4) Now you have your 20 time step data for the LSTM model ready. Download the 'epoch26' from the 'models/hybrid_LSTM' folder.
+(4) Now you have your 20 time step data for the LSTM model ready. Download the 'epoch247' from the 'models/hybrid_LSTM' folder.
 
 (5) Pass the residual data through the epoch28 model and get your result.
 
